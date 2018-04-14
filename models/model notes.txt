@@ -1,0 +1,20 @@
+var ReportSchema = new mongoose.Schema({
+    title: String,
+    reported_by: String,
+    description: String,
+    category: String,
+    loc_x: Number,
+    loc_y: Number,
+    updated_date: { type: Date, default: Date.now },
+  });
+
+
+var UserSchema = new mongoose.Schema({
+    first_name: String,
+    last_name: String,
+    description: String,
+    category: String,
+    loc_x: Number,
+    loc_y: Number,
+    updated_date: { type: Date, default: Date.now },
+  });
