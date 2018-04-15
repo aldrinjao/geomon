@@ -27,13 +27,13 @@
 
                 <label>
                     Date
-                    <input name="date" [(ngModel)]="eventModel.date" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
+                    <input name="date" [(ngModel)]="eventModel.occured_date" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3">
                     <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
                 </label>
                 
                 <label>
                     Time
-                    <input name="time" [(ngModel)]="eventModel.date"  [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
+                    <input name="time" [(ngModel)]="eventModel.occured_date"  [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
                     <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
                 </label>
 
@@ -43,19 +43,11 @@
          
     <div class="md-form form-sm">
 
-        <!-- <input
-            (keyup.enter)="updateEvent(eventinput.value)"
-            (blur)="updateEvent(eventinput.value)" 
-             type="text" id="form1" class="form-control" #eventinput customRegex="^(?!\s*$).+" data-error="*required" data-success="" required> -->
-        
-
-
-            
-                <input  type="text" 
+        <input  type="text" 
                         class="form-control" 
                         id="eventname"
                         required
-                        [(ngModel)]="eventModel.name" name="name"
+                        [(ngModel)]="eventModel.title" name="name"
                         #name="ngModel"
                         mdbActive
                        >
@@ -87,9 +79,11 @@
               <div class="form-group">
                     <label for="name">Category</label>
                 
+
+                <!-- make this dynamic to accomodate additional categories                     -->
                 <select name="category" class="form-control" [(ngModel)]="eventModel.category">
-                    <option value="pests">
-                        Pests
+                    <option value="pest">
+                        Pest
                     </option>
                     <option  value="landslide">
                         Landslide

@@ -24,9 +24,8 @@ export class ReportCreateComponent implements OnInit {
   marker = L.marker();
   model:string = "";
   
-  eventModel = new Event('','','pests',new Date(),1,2);
+  eventModel = new Event('','','pest',new Date(),'',0,0);
 
-    report = {};
 
   constructor(private http: HttpClient, private router: Router,private toastr: ToastrService) {}
   
@@ -54,31 +53,48 @@ export class ReportCreateComponent implements OnInit {
 
   value = '';
 
+
+
+  //called when submit is clicked
   saveReport() {
     
     if (this.markerCount==0){
       this.showError();
 
     }else{
+      //replace the reported by assignment to userid when user accounts are implemented
+      this.eventModel.reported_by = "user_id";
 
-      this.eventModel.lat = 3;
-      this.eventModel.long = 4;
+      // update the eventmodel to the latest marker position
+      this.eventModel.loc_x = this.marker._latlng.lat;
+      this.eventModel.loc_y = this.marker._latlng.lng;
+
+
+
       console.log("submit");
       console.log(this.eventModel);
+      
       this.showSuccess();
 
+      this.callhttp();
     }
-    
-    //if not empty here post here
-    // this.http.post('/api', this.report)
-    //   .subscribe(res => {
-    //       let id = res['_id'];
-    //       this.router.navigate(['/user']);
-    //     }, (err) => {
-    //       console.log(err);
-    //     }
-    //   );
       
+  }
+
+  callhttp(){
+
+    //if not empty here post here
+    
+    this.http.post('/api', this.eventModel)
+      .subscribe(res => {
+          let id = res['_id'];
+          this.router.navigate(['/report-create']);
+        }, (err) => {
+          console.log(err);
+        }
+      );
+    
+
   }
 
 
@@ -99,13 +115,14 @@ export class ReportCreateComponent implements OnInit {
 
     map.on('click', <LeafletMouseEvent>(e) => { 
       
-
+      // update marker info everytime the map is clicked
       if(this.markerCount==0){
         this.marker = L.marker(e.latlng,{icon: this.landslideIcon,draggable:true}).addTo(map)
         this.markerCount=this.markerCount+1;
       }
-      
 
+      this.eventModel.loc_x = e.latlng.lat;
+      this.eventModel.loc_y = e.latlng.lng;
     });
     
 
