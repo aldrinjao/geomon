@@ -41,18 +41,20 @@ export class MapComponent implements OnInit {
 
 
   //icons initialization
+  iconsize = [30,45];
+
 
   pestIcon = L.icon({
     iconUrl: '../assets/ico/pest.png',
 
-    iconSize:     [20, 30], // size of the icon
+    iconSize:     this.iconsize, // size of the icon
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
   fireIcon = L.icon({
     iconUrl: '../assets/ico/fire.png',
 
-    iconSize:     [20, 30], // size of the icon
+    iconSize:     this.iconsize, // size of the icon
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });  
 
@@ -61,7 +63,7 @@ export class MapComponent implements OnInit {
   landslideIcon = L.icon({
     iconUrl: '../assets/ico/landslide.png',
 
-    iconSize:     [20, 30], // size of the icon
+    iconSize:     this.iconsize, // size of the icon
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
@@ -75,8 +77,8 @@ export class MapComponent implements OnInit {
 
      //replace this with retrieve markers
     
-     var lat:number = marker.loc_x;
-     var long:number = marker.loc_y; 
+     var lat:number = marker.loc_y;
+     var long:number = marker.loc_x; 
  
     
      var icontype:string;

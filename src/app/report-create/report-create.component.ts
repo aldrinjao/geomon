@@ -66,8 +66,8 @@ export class ReportCreateComponent implements OnInit {
       this.eventModel.reported_by = "user_id";
 
       // update the eventmodel to the latest marker position
-      this.eventModel.loc_x = this.marker._latlng.lat;
-      this.eventModel.loc_y = this.marker._latlng.lng;
+      this.eventModel.loc_x = this.marker._latlng.lng;
+      this.eventModel.loc_y = this.marker._latlng.lat;
 
 
 

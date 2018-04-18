@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 var ReportSchema = new mongoose.Schema({
     report_id: String,
     title: String,

@@ -1,0 +1,28 @@
+.sidebarLink{
+    padding:10px 0px 5px 20px;
+    width: 100%;
+    
+}
+
+.sidebar{
+    padding-top: 20px;
+    height: 100%;
+    background: #37474F;
+    color:white;
+    min-width: 120px;   
+}
+
+.sidebarLink:hover{
+    background: rgb(90, 117, 131);
+}
+
+a div.sidebarLink{
+    color:white;
+}
+a div.sidebarLink:hover{
+    color:white;
+}
+
+.menuitem{
+    margin-left:10px;
+}

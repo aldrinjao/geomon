@@ -30,35 +30,44 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { MapService } from "./map.service";
 import { GeocodingService } from "./geocoding.service";
+import { SidebarpanelComponent } from './userpage/sidebarpanel/sidebarpanel.component';
+import { UserdashComponent } from './userpage/userdash/userdash.component';
+import { AdmindashComponent } from './userpage/admindash/admindash.component';
 
 const appRoutes: Routes = [
-  {
-    path: 'reports',
-    component: FrontpageComponent,
-    data: { title: 'Book List' }
-  },
   {
     path: 'report',
     component: FrontpageComponent,
     data: { title: 'Book List' }
   },
   { path: '',
-    redirectTo: '/reports',
+    redirectTo: '/report',
     pathMatch: 'full'
   },
   {
     path: 'report-details/:id',
-    component: ReportDetailComponent,
-    data: { title: 'Report Details' }
-  },{
+    component: ReportDetailComponent
+  },
+  {
     path: 'report-create',
-    component: ReportCreateComponent,
-    data: { title: 'Report Event' }
+    component: ReportCreateComponent
   },
   {
     path: 'user',
     component: UserpageComponent,
-    data: { title: 'User Page' }
+    children: [
+      {
+      path: '',
+      component: UserdashComponent,
+      
+      },
+      {
+        path: 'admin',
+        component: AdmindashComponent,
+        
+      }
+
+    ]
   },
 
 
@@ -78,6 +87,9 @@ const appRoutes: Routes = [
     MapComponent,
     FrontpageComponent,
     UserpageComponent,
+    SidebarpanelComponent,
+    UserdashComponent,
+    AdmindashComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +99,7 @@ const appRoutes: Routes = [
     LeafletModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule, 
     OwlDateTimeModule, 
