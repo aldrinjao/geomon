@@ -20,8 +20,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 //declare counterpart routes here from app.module.ts
 app.use('/api', report);
-app.use('/reports', express.static(path.join(__dirname, 'dist')));
-app.use('/test', express.static(path.join(__dirname, 'dist')));
 app.use('**', express.static(path.join(__dirname, 'dist')));
 
 

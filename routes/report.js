@@ -2,14 +2,31 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Report = require('../models/Report.js');
+var user = require('../models/Users.js');
+
+
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
+
+var ctrlProfile = require('../api/controllers/profile');
+var ctrlAuth = require('../api/controllers/authentication');
+
+
+
+
 
 /* GET ALL REPORTS */
+
 router.get('/', function(req, res, next) {
   Report.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
   }).sort({occured_date: -1});
 });
+
 
 /* GET SINGLE REPORT BY ID */
 router.get('/:id', function(req, res, next) {
@@ -42,5 +59,20 @@ router.delete('/:id', function(req, res, next) {
     res.json(post);
   });
 });
+
+
+router.get('/login', function(req, res, next) {
+  console.log("aaa");
+});
+
+
+
+// profile
+  router.get('/profile', auth, ctrlProfile.profileRead);
+
+// authentication
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
+
 
 module.exports = router;

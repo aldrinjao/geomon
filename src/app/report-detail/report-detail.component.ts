@@ -7,7 +7,6 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as L from 'leaflet';
 
 
-
 @Component({
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
@@ -16,7 +15,8 @@ import * as L from 'leaflet';
 })
 export class ReportDetailComponent implements OnInit {
 
-  report = {};
+  report: any = {};
+  
   timePassed;
   myFeatureGroup;
   marker;

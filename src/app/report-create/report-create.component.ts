@@ -83,9 +83,7 @@ export class ReportCreateComponent implements OnInit {
 
   callhttp(){
 
-    //if not empty here post here
-    
-    this.http.post('/api', this.eventModel)
+     this.http.post('/api', this.eventModel)
       .subscribe(res => {
           let id = res['_id'];
           this.router.navigate(['/report-create']);
@@ -94,7 +92,7 @@ export class ReportCreateComponent implements OnInit {
         }
       );
     
-
+    console.log("call http");
   }
 
 

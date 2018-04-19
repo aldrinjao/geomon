@@ -34,6 +34,10 @@ import { SidebarpanelComponent } from './userpage/sidebarpanel/sidebarpanel.comp
 import { UserdashComponent } from './userpage/userdash/userdash.component';
 import { AdmindashComponent } from './userpage/admindash/admindash.component';
 
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+
+
 const appRoutes: Routes = [
   {
     path: 'report',
@@ -50,7 +54,9 @@ const appRoutes: Routes = [
   },
   {
     path: 'report-create',
-    component: ReportCreateComponent
+    component: ReportCreateComponent, 
+    // canActivate: [AuthGuardService]
+    
   },
   {
     path: 'user',
@@ -99,7 +105,7 @@ const appRoutes: Routes = [
     LeafletModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      { enableTracing: true } // <-- debugging purposes only
     ),
     FormsModule, 
     OwlDateTimeModule, 
@@ -111,7 +117,12 @@ const appRoutes: Routes = [
       }
     ), // ToastrModule added
   ],
-  providers: [MapService, GeocodingService],
+  providers: [
+    MapService,
+    GeocodingService,
+    AuthenticationService, 
+    AuthGuardService
+  ],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })

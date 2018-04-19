@@ -38,8 +38,7 @@ export class MapComponent implements OnInit {
   };
 
 
-
-
+//aets
   //icons initialization
   iconsize = [30,45];
 
