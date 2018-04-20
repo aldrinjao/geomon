@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 var report = require('./routes/report');
 var app = express();
 var mongoose = require('mongoose');
+
+var passport = require('passport');
+
+
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/geomon', { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
@@ -18,9 +22,33 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
+
+
+app.use(passport.initialize());
+
+
 //declare counterpart routes here from app.module.ts
 app.use('/api', report);
 app.use('**', express.static(path.join(__dirname, 'dist')));
+
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handlers
+
+// [SH] Catch unauthorised errors
+app.use(function (err, req, res, next) {
+if (err.name === 'UnauthorizedError') {
+  res.status(401);
+  res.json({"message" : err.name + ": " + err.message});
+}
+});
 
 
 

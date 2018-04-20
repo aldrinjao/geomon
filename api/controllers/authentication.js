@@ -15,7 +15,6 @@ module.exports.register = function(req, res) {
   //   });
   //   return;
   // }
-
   var user = new User();
 
   user.name = req.body.name;
@@ -34,34 +33,44 @@ module.exports.register = function(req, res) {
 
 };
 
-module.exports.test = function(){
-  console.log("aa");
-}
 
 module.exports.login = function(req, res) {
 
+  console.log("b")
+
+  passport.authenticate('local',
+  { failureFlash: 'Invalid username or password.',successFlash: 'Welcome!'
 
 
-  passport.authenticate('local', function(err, user, info){
-    var token;
+}
 
-    // If Passport throws/catches an error
-    if (err) {
-      res.status(404).json(err);
-      return;
-    }
+  );
+  console.log("aa");
+  
+  // passport.authenticate('local', function(err, user, info){
+  //   var token;
+   
+  //   // If Passport throws/catches an error
+  //   if (err) {
+      
+  //     res.status(404).json(err);
 
-    // If a user is found
-    if(user){
-      token = user.generateJwt();
-      res.status(200);
-      res.json({
-        "token" : token
-      });
-    } else {
-      // If user is not found
-      res.status(401).json(info);
-    }
-  })(req, res);
+  //     return;
+  //   }
+
+  //   // If a user is found
+  //   if(user){
+      
+  //     token = user.generateJwt();
+  //     res.status(200);
+  //     res.json({
+  //       "token" : token
+  //     });
+  //   } else {
+     
+  //     // If user is not found
+  //     res.status(401).json(info);
+  //   }
+  // })(req, res);
 
 };

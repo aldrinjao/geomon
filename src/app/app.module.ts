@@ -33,9 +33,12 @@ import { GeocodingService } from "./geocoding.service";
 import { SidebarpanelComponent } from './userpage/sidebarpanel/sidebarpanel.component';
 import { UserdashComponent } from './userpage/userdash/userdash.component';
 import { AdmindashComponent } from './userpage/admindash/admindash.component';
+import { RegisterComponent } from './userpage/register/register.component';
 
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
+import { LoginComponent } from './userpage/login/login.component';
+
 
 
 const appRoutes: Routes = [
@@ -75,9 +78,19 @@ const appRoutes: Routes = [
 
     ]
   },
+  {
+    path: 'register',
+    component: RegisterComponent
 
+  },
+  {
+    path: 'login',
+    component: LoginComponent
 
-  { path: '**', component: PagenotfoundComponent }
+  },
+  { 
+    path: '**', component: PagenotfoundComponent 
+  }
 
 ];
 
@@ -96,6 +109,8 @@ const appRoutes: Routes = [
     SidebarpanelComponent,
     UserdashComponent,
     AdmindashComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -105,7 +120,7 @@ const appRoutes: Routes = [
     LeafletModule.forRoot(),
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule, 
     OwlDateTimeModule, 

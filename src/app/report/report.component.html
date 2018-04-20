@@ -4,6 +4,7 @@
   <table class="table table-hover">
     <thead>
       <tr>
+        <th>Occured</th>
         <th>Date and Time</th>
         <th>Event</th>
         <th>Category</th>
@@ -13,6 +14,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let report of reports">
+        <td>{{ report.timePassed}}</td>
         <td>{{ report.occured_date }}</td>
         <td>{{ report.title }}</td>
         <td>{{ report.category }}</td>

@@ -61,12 +61,6 @@ router.delete('/:id', function(req, res, next) {
 });
 
 
-router.get('/login', function(req, res, next) {
-  console.log("aaa");
-});
-
-
-
 // profile
   router.get('/profile', auth, ctrlProfile.profileRead);
 
