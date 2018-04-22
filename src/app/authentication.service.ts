@@ -10,6 +10,7 @@ export interface UserDetails {
   name: string;
   exp: number;
   iat: number;
+  role: string;
 }
 
 interface TokenResponse {
@@ -20,11 +21,16 @@ export interface TokenPayload {
   email: string;
   password: string;
   name?: string;
+  role: string;
 }
+
+
 
 @Injectable()
 export class AuthenticationService {
   private token: string;
+  tempUser;
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -94,9 +100,20 @@ export class AuthenticationService {
     return this.request('post', 'login', user);
   }
 
-  public profile(): Observable<any> {
-    return this.request('get', 'profile');
-  }
+
+
+  public profile() {
+
+
+    var tempid = this.getUserDetails()._id;
+  
+    this.http.get('/api/user/'+tempid).subscribe(data => {
+       this.tempUser = data; 
+
+      });
+      console.log(this.tempUser);
+      return this.tempUser;
+    }
 
   public logout(): void {
     this.token = '';

@@ -6,15 +6,16 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Event} from './event';
 
+
+import { AuthenticationService } from '../authentication.service';
+
+
 @Component({
   selector: 'app-report-create',
   templateUrl: './report-create.component.html',
   styleUrls: ['./report-create.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-
-
-
 
 
 
@@ -26,8 +27,9 @@ export class ReportCreateComponent implements OnInit {
   
   eventModel = new Event('','','pest',new Date(),'',0,0);
 
+  userId = this.auth.getUserDetails()._id;
 
-  constructor(private http: HttpClient, private router: Router,private toastr: ToastrService) {}
+  constructor(public auth: AuthenticationService,private http: HttpClient, private router: Router,private toastr: ToastrService) {}
   
   options = {
     layers: [
@@ -63,17 +65,12 @@ export class ReportCreateComponent implements OnInit {
 
     }else{
       //replace the reported by assignment to userid when user accounts are implemented
-      this.eventModel.reported_by = "user_id";
+      this.eventModel.reported_by = this.userId;
 
       // update the eventmodel to the latest marker position
       this.eventModel.loc_x = this.marker._latlng.lng;
       this.eventModel.loc_y = this.marker._latlng.lat;
 
-
-
-      console.log("submit");
-      console.log(this.eventModel);
-      
       this.showSuccess();
 
       this.callhttp();

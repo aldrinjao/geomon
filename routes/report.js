@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 });
 
 
+
 /* GET SINGLE REPORT BY ID */
 router.get('/:id', function(req, res, next) {
   Report.findById(req.params.id, function (err, post) {
@@ -60,6 +61,16 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
+
+
+
+router.get('/user/:id', function(req, res, next) {
+  console.log("get single user");
+  user.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 // profile
   router.get('/profile', auth, ctrlProfile.profileRead);

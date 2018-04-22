@@ -9,16 +9,11 @@ var sendJSONresponse = function(res, status, content) {
 
 module.exports.register = function(req, res) {
 
-  // if(!req.body.name || !req.body.email || !req.body.password) {
-  //   sendJSONresponse(res, 400, {
-  //     "message": "All fields required"
-  //   });
-  //   return;
-  // }
   var user = new User();
 
   user.name = req.body.name;
   user.email = req.body.email;
+  user.role = req.body.role;
 
   user.setPassword(req.body.password);
 

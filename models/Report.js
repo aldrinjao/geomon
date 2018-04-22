@@ -1,10 +1,12 @@
 var mongoose = require('mongoose');
 
+var Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 var ReportSchema = new mongoose.Schema({
     report_id: String,
     title: String,
-    reported_by: String,
+    reported_by: ObjectId,
     description: String,
     category: String,
     loc_x: Number,
