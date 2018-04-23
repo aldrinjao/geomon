@@ -56,12 +56,6 @@ const appRoutes: Routes = [
     component: ReportDetailComponent
   },
   {
-    path: 'report-create',
-    component: ReportCreateComponent, 
-    // canActivate: [AuthGuardService]
-    
-  },
-  {
     path: 'user',
     component: UserpageComponent,
     children: [
@@ -73,6 +67,12 @@ const appRoutes: Routes = [
       {
         path: 'admin',
         component: AdmindashComponent,
+        
+      },
+      {
+        path: 'report-create',
+        component: ReportCreateComponent, 
+        // canActivate: [AuthGuardService]
         
       }
 

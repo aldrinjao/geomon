@@ -83,13 +83,11 @@ export class ReportCreateComponent implements OnInit {
      this.http.post('/api', this.eventModel)
       .subscribe(res => {
           let id = res['_id'];
-          this.router.navigate(['/report-create']);
+          this.router.navigate(['/user/report-create']);
         }, (err) => {
           console.log(err);
         }
       );
-    
-    console.log("call http");
   }
 
 

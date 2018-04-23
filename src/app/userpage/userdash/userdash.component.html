@@ -1,31 +1,107 @@
+
+
 <div class="row">
-        <div class="col-md-6 dashboardCard">
 
-                <div class="card">
-                        <h3 class="card-header primary-color white-text">Featured</h3>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a class="btn btn-primary waves-light" mdbWavesEffect>Go somewhere</a>
-                        </div>
-                    </div>
-                    <!--/.Panel-->
+    <div class="col-md-6 dashboardCard">
 
-         
-        </div>
-        <div class="col-md-6 dashboardCard">
+        <div class="card">
+                <h3 class="card-header special-color white-text">My Subscriptions</h3>
+                <div class="card-body">
+ 
+                  
+                    <table class="table-sm table-hover subsTable">
+                        <thead>
+                            <tr>
+                                <td>
+                                    Event
+                                </td>
+                                <td>
+                                    Category
+                                </td>
+                                <td>
+                                    Occured
+                                </td>
+                                <td>
+                                    Link
+                                </td>
+                            </tr>
+                        </thead>
+                        <tr *ngFor="let newreport of newReports">
+                            <td>
+                                    {{newreport.title}} 
+                            </td>
+                            <td>
+                                    {{newreport.category}}
+                            </td>
+                            <td>
+                                    {{newreport.timePassed}}
+                            </td>
+                            <td>
+                                    <a [routerLink]="['/report-details', newreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                    </table>
 
-                <div class="card">
-                        <h3 class="card-header primary-color white-text">Featured</h3>
-                        <div class="card-body">
-                            <h4 class="card-title">Special title treatment</h4>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a class="btn btn-primary waves-light" mdbWavesEffect>Go somewhere</a>
-                        </div>
-                    </div>
-                    <!--/.Panel-->
 
-         
-        </div>
+
+                    <a class="btn btn-primary waves-light"  mdbWavesEffect>View All...</a>
+                </div>
+            
+                
+            </div>
+            <!--/.Panel-->
+
+ 
 </div>
-                        
+        <div class="col-md-6 dashboardCard">
+
+                <div class="card">
+                        <h3 class="card-header special-color white-text">My Submitted Events</h3>
+                        <div class="card-body">
+                            <h4 class="card-title">Pending Approval</h4>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p class="card-text">
+                                Event Title at Region on Time and Date 
+                            </p>
+                            <p>
+                                Limit this to 10
+                            </p>
+ 
+                            <a class="btn btn-primary waves-light" mdbWavesEffect>View All</a>
+                        </div>
+                    </div>
+                    <!--/.Panel-->
+
+         
+        </div>
+
+</div>

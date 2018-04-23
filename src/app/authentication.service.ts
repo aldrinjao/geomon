@@ -11,6 +11,7 @@ export interface UserDetails {
   exp: number;
   iat: number;
   role: string;
+  
 }
 
 interface TokenResponse {

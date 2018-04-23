@@ -1,15 +1,15 @@
 <div class="sidebar">
-    <a href="user/" >
+    <a routerLink='/user' >
         <div class="sidebarLink" >
                 <i class="fa fa-dashboard" aria-hidden="true"></i>
                 <span class="menuitem">Dashboard</span>
         </div>
     </a>
 
-    <a href="user/" >
+    <a routerLink='/user/report-create' >
         <div class="sidebarLink" >
                 <i class="fa fa-database" aria-hidden="true"></i>   
-                <span class="menuitem">Menu Item 2</span>
+                <span class="menuitem">Submit an Event</span>
         </div>
     </a>
 
@@ -27,7 +27,7 @@
         </div>
     </a>
         
-    <a href="user/" >
+    <a routerLink='/' (click)="auth.logout()">
         <div class="sidebarLink" >
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 <span class="menuitem">Sign out</span>

@@ -13,6 +13,7 @@ var ReportSchema = new mongoose.Schema({
     loc_y: Number,
     updated_date: { type: Date, default: Date.now },
     occured_date: { type: Date, default: Date.now },
+    approved: String
   });
   
 
