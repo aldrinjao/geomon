@@ -12,7 +12,7 @@ var ReportSchema = new mongoose.Schema({
     loc_x: Number,
     loc_y: Number,
     updated_date: { type: Date, default: Date.now },
-    occured_date: { type: Date, default: Date.now },
+    occurred_date: { type: Date, default: Date.now },
     approved: String
   });
   
@@ -35,7 +35,7 @@ module.exports = mongoose.model('Report', ReportSchema);
 //     public name: string,
 //     public description: string,
 //     public category: string,
-//     public occured_date: Date, 
+//     public occurred_date: Date, 
 //     public reported_by,
 //     public loc_x:number,
 //     public loc_y:number,

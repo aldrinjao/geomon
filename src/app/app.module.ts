@@ -38,6 +38,9 @@ import { RegisterComponent } from './userpage/register/register.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './userpage/login/login.component';
+import { MysubscriptionsComponent } from './userpage/mysubscriptions/mysubscriptions.component';
+import { MysubmissionsComponent } from './userpage/mysubmissions/mysubmissions.component';
+import { CatCreateComponent } from './userpage/cat-create/cat-create.component';
 
 
 
@@ -74,6 +77,22 @@ const appRoutes: Routes = [
         component: ReportCreateComponent, 
         // canActivate: [AuthGuardService]
         
+      },
+      {
+        path: 'subscriptions',
+        component: MysubscriptionsComponent, 
+        // canActivate: [AuthGuardService]
+        
+      },
+      {
+        path: 'submissions',
+        component: MysubmissionsComponent, 
+        // canActivate: [AuthGuardService]
+        
+      },
+      {
+        path: 'report-details/:id',
+        component: ReportDetailComponent
       }
 
     ]
@@ -86,6 +105,11 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+
+  },
+  {
+    path: 'cat-create',
+    component: CatCreateComponent
 
   },
   { 
@@ -111,6 +135,9 @@ const appRoutes: Routes = [
     AdmindashComponent,
     RegisterComponent,
     LoginComponent,
+    MysubscriptionsComponent,
+    MysubmissionsComponent,
+    CatCreateComponent,
   ],
   imports: [
     BrowserModule,

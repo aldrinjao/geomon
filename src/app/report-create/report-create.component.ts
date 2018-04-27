@@ -25,7 +25,7 @@ export class ReportCreateComponent implements OnInit {
   marker = L.marker();
   model:string = "";
   
-  eventModel = new Event('','','pest',new Date(),'',0,0);
+  eventModel = new Event('','','pest',new Date(),'',0,0,'pending');
 
   userId = this.auth.getUserDetails()._id;
 
@@ -70,6 +70,7 @@ export class ReportCreateComponent implements OnInit {
       // update the eventmodel to the latest marker position
       this.eventModel.loc_x = this.marker._latlng.lng;
       this.eventModel.loc_y = this.marker._latlng.lat;
+      
 
       this.showSuccess();
 

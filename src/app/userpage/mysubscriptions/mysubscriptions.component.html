@@ -1,0 +1,77 @@
+<div class="card dashboardCard">
+  <h3 class="card-header special-color white-text">My Subscriptions 
+    
+      <a class="btn btn-primary waves-light btn-sm" (click)="basicModal.show()" mdbWavesEffect>Edit</a>
+    
+    </h3>
+  <div class="card-body">
+    
+      <table class="table-sm table-hover subsTable">
+          <thead>
+              <tr>
+                  <td>
+                      Event
+                  </td>
+                  <td>
+                      Category
+                  </td>
+                  <td>
+                      Occurred
+                  </td>
+                  <td>
+                      Link
+                  </td>
+              </tr>
+          </thead>
+          <tr *ngFor="let newreport of newReports">
+              <td>
+                      {{newreport.title}} 
+              </td>
+              <td>
+                      {{newreport.category}}
+              </td>
+              <td>
+                      {{newreport.timePassed}}
+              </td>
+              <td class="iconlink">
+                      <a [routerLink]="['/user/report-details', newreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+              </td>
+          </tr>
+      </table>
+  </div>
+  
+</div>
+
+<div mdbModal #basicModal="mdb-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title w-100" id="myModalLabel">My Subscriptions</h4>
+            </div>
+
+            <form (ngSubmit)="editSubs()" #reportForm="ngForm">
+
+                <div class="modal-body">
+
+
+                    <div *ngFor="let category of categories">
+                        <div class="form-check">
+                            <input type="checkbox" [(ngModel)]="category.checked" name="check_{{category.name}}">
+                            <label class="form-check-label" for="defaultCheck1">
+                                {{category.name}}
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+                    <button type="button" class="btn btn-primary relative waves-light" (click)="editSubs();basicModal.hide();" mdbWavesEffect>Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

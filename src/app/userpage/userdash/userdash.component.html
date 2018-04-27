@@ -19,7 +19,7 @@
                                     Category
                                 </td>
                                 <td>
-                                    Occured
+                                    Occurred
                                 </td>
                                 <td>
                                     Link
@@ -36,15 +36,15 @@
                             <td>
                                     {{newreport.timePassed}}
                             </td>
-                            <td>
-                                    <a [routerLink]="['/report-details', newreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <td class="iconlink">
+                                    <a [routerLink]="['/user/report-details', newreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     </table>
 
 
 
-                    <a class="btn btn-primary waves-light"  mdbWavesEffect>View All...</a>
+                    <a routerLink='/user/subscriptions' class="btn btn-primary waves-light"  mdbWavesEffect>View All</a>
                 </div>
             
                 
@@ -58,45 +58,41 @@
                 <div class="card">
                         <h3 class="card-header special-color white-text">My Submitted Events</h3>
                         <div class="card-body">
-                            <h4 class="card-title">Pending Approval</h4>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p class="card-text">
-                                Event Title at Region on Time and Date 
-                            </p>
-                            <p>
-                                Limit this to 10
-                            </p>
+                            <h3>Pending Approval</h3>
+                            <table class="table-sm table-hover subsTable">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            Event
+                                        </td>
+                                        <td>
+                                            Category
+                                        </td>
+                                        <td>
+                                            Occurred
+                                        </td>
+                                        <td>
+                                            Link
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tr *ngFor="let pendingreport of pendingReports">
+                                    <td>
+                                            {{pendingreport.title}} 
+                                    </td>
+                                    <td>
+                                            {{pendingreport.category}}
+                                    </td>
+                                    <td>
+                                            {{pendingreport.timePassed}}
+                                    </td>
+                                    <td>
+                                            <a [routerLink]="['/user/report-details', pendingreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            </table>
  
-                            <a class="btn btn-primary waves-light" mdbWavesEffect>View All</a>
+                            <a routerLink='/user/submissions' class="btn btn-primary waves-light" mdbWavesEffect>View All</a>
                         </div>
                     </div>
                     <!--/.Panel-->

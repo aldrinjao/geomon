@@ -4,10 +4,11 @@ export class Event {
     public title: string,
     public description: string,
     public category: string,
-    public occured_date: Date, 
+    public occurred_date: Date, 
     public reported_by,
     public loc_x:number,
     public loc_y:number,
+    public approved:string
   ) {  }
 
 }

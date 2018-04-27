@@ -112,7 +112,6 @@ export class AuthenticationService {
        this.tempUser = data; 
 
       });
-      console.log(this.tempUser);
       return this.tempUser;
     }
 

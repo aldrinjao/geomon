@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Report = require('../models/Report.js');
 var user = require('../models/Users.js');
+var Categorymodel = require('../models/Categories.js');
 
 
 var jwt = require('express-jwt');
@@ -24,7 +25,23 @@ router.get('/', function(req, res, next) {
   Report.find(function (err, products) {
     if (err) return next(err);
     res.json(products);
-  }).sort({occured_date: -1});
+  }).sort({occurred_date: -1});
+});
+
+//CATEGORIES
+
+router.get('/cat', function(req, res, next) {
+  Categorymodel.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
+  });
+});
+
+router.post('/cat', function(req, res, next) {
+  Categorymodel.create(req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
 });
 
 
@@ -32,9 +49,12 @@ router.get('/', function(req, res, next) {
 /* GET SINGLE REPORT BY ID */
 router.get('/:id', function(req, res, next) {
   Report.findById(req.params.id, function (err, post) {
+  
     if (err) return next(err);
     res.json(post);
-  });
+  
+  
+  }); 
 });
 
 /* SAVE REPORT */
@@ -61,19 +81,44 @@ router.delete('/:id', function(req, res, next) {
   });
 });
 
+
+
+// USER Functions
+
 //get all reports by a user
 
 router.get('/userreports/:id', function(req, res, next) {
- 
-  Report.find({reported_by:req.params.id, approved:'pending'},function (err, products) {
-    
+  whereClause:any = {};
+  if (req.query.state === "pending"){
+
+    whereClause= {
+      reported_by:req.params.id,
+      approved: 'pending'
+    }
+
+  }else if (req.query.state === "approved"){
+    whereClause= {
+      reported_by:req.params.id,
+      approved: 'approved'
+    }
+
+  }else {
+    whereClause= {
+      reported_by:req.params.id
+    }
+
+
+  }
+  Report.find(whereClause,function (err, products) {
+
     if (err) return next(err);
     res.json(products);
   });
-});
+}); 
 
 
 //get all reports for a user's subscription
+
 //get a user's subscriptions then query
 router.get('/subscriptions/:id', function(req, res, next) {
   
@@ -85,15 +130,21 @@ router.get('/subscriptions/:id', function(req, res, next) {
       if (err) return next(err);
       res.json(products);
       
-    }).sort({occured_date: -1});
+    }).sort({occurred_date: -1});
   
   });
+ 
+});
 
+router.get('/subscriptionslist/:id', function(req, res, next) {
   
-  //get the user subscriptions, then use those as search field
+  user.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    
+    res.json(post);
 
-
-
+  });
+ 
 });
 
 
@@ -104,8 +155,9 @@ router.get('/user/:id', function(req, res, next) {
   });
 });
 
-// profile
-  router.get('/profile', auth, ctrlProfile.profileRead);
+
+
+
 
 // authentication
 router.post('/register', ctrlAuth.register);

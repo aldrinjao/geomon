@@ -10,8 +10,6 @@ var mongoose = require('mongoose');
 
 var passport = require('passport');
 
-
-
 require('./api/config/passport');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://localhost/geomon', { useMongoClient: true, promiseLibrary: require('bluebird') })

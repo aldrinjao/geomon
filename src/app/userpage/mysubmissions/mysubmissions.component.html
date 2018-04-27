@@ -1,0 +1,46 @@
+<div class="card dashboardCard">
+  <h3 class="card-header special-color white-text">My Submitted Events</h3>
+  <div class="card-body">
+    
+      <table class="table-sm table-hover subsTable">
+          <thead>
+              <tr>
+                  <td>
+                      Event
+                  </td>
+                  <td>
+                      Category
+                  </td>
+                  <td>
+                      Occurred
+                  </td>
+                  <td>
+                      Status
+                  </td>
+                  <td>
+                      Link
+                  </td>
+              </tr>
+          </thead>
+          <tr *ngFor="let myreport of myReports">
+              <td>
+                      {{myreport.title}} 
+              </td>
+              <td>
+                      {{myreport.category}}
+              </td>
+              <td>
+                      {{myreport.timePassed}}
+              </td>
+              <td>
+                      {{myreport.status}}
+              </td>
+              <td class="iconlink">
+                      <a [routerLink]="['/user/report-details', myreport._id]"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+              </td>
+          </tr>
+      </table>
+  </div>
+  
+</div>
+

@@ -16,7 +16,6 @@ import * as L from 'leaflet';
 export class ReportDetailComponent implements OnInit {
 
   report: any = {};
-  
   timePassed;
   myFeatureGroup;
   marker;
@@ -52,15 +51,23 @@ export class ReportDetailComponent implements OnInit {
   }
 
   getReportDetail(id) {
+    var tempId;
     this.http.get('/api/'+id).subscribe(data => {
 
-        var tempDate = data["occured_date"];
-        data["occured_date"] = moment(tempDate).format("MMM Do YYYY");  
+        var tempDate = data["occurred_date"];
+        data["occurred_date"] = moment(tempDate).format("MMM Do YYYY");  
         this.timePassed = moment(tempDate).fromNow();
         this.setCenter(data["loc_y"],data["loc_x"]);
         this.report = data;
+        tempId = data["reported_by"]
+
+        this.http.get('/api/user/'+tempId).subscribe(data2 => {
+          this.report.reported_by = data2['name'];
+        });
        });
   }
+
+  //set visibility of delete button
 
   onMapReady(map){
     this.map = map;

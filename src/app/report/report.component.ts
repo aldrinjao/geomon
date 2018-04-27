@@ -16,8 +16,8 @@ export class ReportComponent implements OnInit {
     
     this.http.get('/api').subscribe(data => {     
            
-      // var tempDate = data["occured_date"];
-      // data["occured_date"] = moment(tempDate).format("MMM Do YYYY");  
+      // var tempDate = data["occurred_date"];
+      // data["occurred_date"] = moment(tempDate).format("MMM Do YYYY");  
       // this.timePassed = moment(tempDate).fromNow();
       // this.setCenter(data["loc_y"],data["loc_x"]);
       // this.report = data;
@@ -26,10 +26,9 @@ export class ReportComponent implements OnInit {
 
 
       for (var temp in data){
-
-        var tempDate = data[temp].occured_date;
-        data[temp].occured_date = moment(tempDate).format('lll');  
-        data[temp].timePassed = moment(tempDate).fromNow();
+        console.log(data[temp].occurred_date);
+        data[temp].occurred_date = moment(data[temp].occurred_date).format('lll');  
+        data[temp].timePassed = moment(data[temp].occurred_date).fromNow();
 
       }
       
