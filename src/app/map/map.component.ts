@@ -28,10 +28,28 @@ export class MapComponent implements OnInit {
   public test:number;
   public id:number;
   public reports: any;
+  public mapReference;
 
+
+  public OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	maxZoom: 17,
+	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+  });
+
+  public Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+
+
+
+  public baseMaps = {
+    "Grayscale": this.OpenTopoMap,
+    "Streets": this.Esri_WorldImagery
+  };
   options = {
     layers: [
-      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: '...' }),
+      this.OpenTopoMap,
+      this.Esri_WorldImagery
     ],
     zoom: 6,
     center: L.latLng({ lat: 12.196486, lng: 123.28553643124997 }),
@@ -118,6 +136,8 @@ export class MapComponent implements OnInit {
   }
 
   onMapReady(map) {
+
+    this.mapReference=map;
     this.myFeatureGroup= L.featureGroup().addTo(map).on("click", this.groupClick);
   
 
@@ -135,10 +155,12 @@ export class MapComponent implements OnInit {
       }
       
     });
-   
+    // L.control.layers(this.baseMaps,null,{collapsed:false}).addTo(map);
     
   }
 
 
-
+  removeLayer(){
+    this.mapReference.removeLayer(this.myFeatureGroup);
+  }
 }

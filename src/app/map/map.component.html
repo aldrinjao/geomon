@@ -3,5 +3,18 @@
       style="height: 75vh;"
       leaflet 
       [leafletOptions]="options"
+
       (leafletMapReady)="onMapReady($event)">
+
+      <div class="leaflet-top leaflet-right">
+
+            <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true">
+                  <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                  <form>
+                        <input type="text"/>
+                  </form>
+                  
+            </div>
+
+      </div>   
 </div>
