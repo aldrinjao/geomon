@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
-
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-mysubscriptions',
@@ -16,18 +18,36 @@ export class MysubscriptionsComponent implements OnInit {
   public newReports:any = []; // idk why but the http get command does not return an array so newReports should be declared as an array
   public categories:any = [];
   public subslist:any =[];
+  public id;
 
-  constructor(public auth: AuthenticationService,private http: HttpClient) { }
+  constructor(public auth: AuthenticationService,private http: HttpClient,private router: Router,private toastr: ToastrService) { }
 
   ngOnInit() {
     
 
 
     // load the categories list for the checkboxes
-    var id = this.auth.getUserDetails()._id;
+    this.id = this.auth.getUserDetails()._id;
+
+    this.http.get('/api/subscriptionslist/'+this.id).subscribe(data => {
+      this.subslist = data["subscriptions"]; 
+    });
 
 
-    this.http.get('/api/subscriptions/'+id).subscribe(data => {
+
+        
+    this.http.get('/api/cat').subscribe(data => {
+      
+      for (var temp in data){
+
+        data[temp].checked = this.setChecked(data[temp].name);  
+
+      }
+
+      this.categories = data;
+   });
+
+    this.http.get('/api/subscriptions/'+this.id).subscribe(data => {
     
       for (var temp in data){
 
@@ -39,28 +59,14 @@ export class MysubscriptionsComponent implements OnInit {
       this.newReports=data;
     });
 
-    this.http.get('/api/subscriptionslist/'+id).subscribe(data => {
-      this.subslist = data["subscriptions"]; 
-    });
 
-    
-    this.http.get('/api/cat').subscribe(data => {
-      
-      for (var temp in data){
 
-        data[temp].checked = this.setChecked(data[temp].name);  
 
-      }
-
-      this.categories = data;
-   });
   }
 
 
   setChecked(category:string){
 
-
-    console.log(category+" "+this.subslist.includes(category));
     if (this.subslist.includes(category)){
       return true;
     }else{
@@ -75,8 +81,31 @@ export class MysubscriptionsComponent implements OnInit {
   }
 
   editSubs(){
-    //if a category is true, insert into array then call http for updating the user's subscriptions
-    console.log(this.categories);
+    //call http to update the subscriptions
+    var tempArray = [];
+    for(var i=0;i<this.categories.length;i++){
+      if  (this.categories[i].checked){
+        console.log(this.categories[i].name);
+        tempArray.push(this.categories[i].name);
+      }else{
+
+      }
+    }
+
+    var userSubs = {
+      subscriptions:tempArray
+    }
+
+      this.http.put('/api/cat/'+this.id,userSubs).subscribe(res => {
+        console.log("success");
+      }, (err) => {
+        console.log(err);
+      }
+    );
+
+    location.reload();
   }
+
+ 
 
 }

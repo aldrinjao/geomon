@@ -2,9 +2,12 @@
   <h3 class="card-header special-color white-text">My Submitted Events</h3>
   <div class="card-body">
     
-      <table class="table-sm table-hover subsTable">
-          <thead>
+      <table class="table-sm table-hover subsTable ">
+          <thead class="grey">
               <tr>
+                  <td>
+
+                  </td>
                   <td>
                       Event
                   </td>
@@ -23,6 +26,10 @@
               </tr>
           </thead>
           <tr *ngFor="let myreport of myReports">
+              <td>
+                  <!-- add action for checked items -->
+                    <input type="checkbox">
+              </td>
               <td>
                       {{myreport.title}} 
               </td>

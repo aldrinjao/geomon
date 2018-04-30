@@ -44,7 +44,14 @@ router.post('/cat', function(req, res, next) {
   });
 });
 
+router.put('/cat/:id', function(req, res, next) {
 
+  console.log(req.body);
+  user.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
 
 /* GET SINGLE REPORT BY ID */
 router.get('/:id', function(req, res, next) {

@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
 
   options = {
     layers: [
-      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' }),
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: '...' }),
     ],
     zoom: 6,
     center: L.latLng({ lat: 12.196486, lng: 123.28553643124997 }),
