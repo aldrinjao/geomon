@@ -3,18 +3,90 @@
       style="height: 75vh;"
       leaflet 
       [leafletOptions]="options"
-
       (leafletMapReady)="onMapReady($event)">
 
-      <div class="leaflet-top leaflet-right">
+      
+            
+            <div style="margin-top:20px;margin-right:20px;" class="leaflet-top leaflet-right">
 
-            <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true">
-                  <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                  <form>
-                        <input type="text"/>
-                  </form>
-                  
+                  <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" style="width:200px;">
+                        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                        <div class="form-group">
+                        
+                        
+                              <input type="text" placeholder="Search"/>
+                        
+                        
+                        
+                        </div>
+
+                  </div> 
             </div>
+            <div style="margin-right: 20px; margin-top:100px;" class="leaflet-top leaflet-right" title="Filter">
 
-      </div>   
+                        <div style = "padding:6px;" [ngClass]="{'active': isActive }" (click)="isActive = !isActive;aleart();" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
+                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                              <div class="mapbutton"  mdbWavesEffect>
+                              
+                                    <i class="fa fa-filter mapbuttonicon" aria-hidden="true"></i>
+                              
+                              
+                              
+                              </div>
+      
+                        </div> 
+                  </div>
+
+                  
+                  <div style="margin-right: 20px; margin-top:160px;" class="leaflet-top leaflet-right">
+
+                        <div style = "padding:6px;" [ngClass]="{'active': isActive }" (click)="isActive = !isActive;aleart();" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
+                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                              <div class="mapbutton"  mdbWavesEffect>
+                              
+                                    <i class="fa fa-info mapbuttonicon" aria-hidden="true"></i>
+                              
+                              
+                              
+                              </div>
+      
+                        </div> 
+                  </div>
+
+                  <div style="margin-right: 20px; margin-top:220px;" class="leaflet-top leaflet-right">
+
+                        <div style = "padding:6px;" [ngClass]="{'active': isActive }" (click)="isActive = !isActive;aleart();" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
+                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
+                              <div class="mapbutton"  mdbWavesEffect>
+                              
+                                    <i class="fa fa-gear mapbuttonicon" aria-hidden="true"></i>
+                              
+                              
+                              
+                              </div>
+      
+                        </div> 
+                  </div>
 </div>
+
+
+
+<!-- animated div displays on click -->
+
+<!-- 
+
+<div style="width: 100%;margin-top:10px;">
+            <input type="checkbox"/> <i class="fa fa-filter" aria-hidden="true"><span class="controllabel">Filter</span></i> 
+      </div>
+
+      <div style="width: 100%;visibility: hidden;">
+
+            <label for="sel1" class="controllabel">Categories:</label>
+            <select class="form-control" id="sel1">
+                  <option>Landslide</option>
+                  <option>Pests</option>
+                  <option>Fire</option>
+                  <option>Flood</option>
+            </select>
+            
+      </div> -->

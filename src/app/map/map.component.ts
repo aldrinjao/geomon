@@ -158,7 +158,9 @@ export class MapComponent implements OnInit {
     // L.control.layers(this.baseMaps,null,{collapsed:false}).addTo(map);
     
   }
-
+  aleart(){
+    console.log("aa");
+  }
 
   removeLayer(){
     this.mapReference.removeLayer(this.myFeatureGroup);
