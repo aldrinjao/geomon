@@ -26,7 +26,6 @@ export class ReportComponent implements OnInit {
 
 
       for (var temp in data){
-        console.log(data[temp].occurred_date);
         data[temp].occurred_date = moment(data[temp].occurred_date).format('lll');  
         data[temp].timePassed = moment(data[temp].occurred_date).fromNow();
 

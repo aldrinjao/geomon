@@ -3,7 +3,7 @@ import { NgModule, NO_ERRORS_SCHEMA, Directive } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {MatRadioModule} from '@angular/material';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -80,7 +80,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'subscriptions',
-        component: MysubscriptionsComponent, 
+        component: ReportCreateComponent, 
         // canActivate: [AuthGuardService]
         
       },
@@ -92,7 +92,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'report-details/:id',
-        component: ReportDetailComponent
+        component: MysubscriptionsComponent
       }
 
     ]
@@ -138,6 +138,7 @@ const appRoutes: Routes = [
     MysubscriptionsComponent,
     MysubmissionsComponent,
     CatCreateComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -158,6 +159,7 @@ const appRoutes: Routes = [
         progressBar: true
       }
     ), // ToastrModule added
+    MatRadioModule,
   ],
   providers: [
     MapService,

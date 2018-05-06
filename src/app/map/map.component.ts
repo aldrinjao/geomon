@@ -31,10 +31,10 @@ export class MapComponent implements OnInit {
   public mapReference;
 
 
-  public OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-	maxZoom: 17,
-	attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-  });
+  public OpenTopoMap =L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
 
   public Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
@@ -48,8 +48,7 @@ export class MapComponent implements OnInit {
   };
   options = {
     layers: [
-      this.OpenTopoMap,
-      this.Esri_WorldImagery
+      this.OpenTopoMap
     ],
     zoom: 6,
     center: L.latLng({ lat: 12.196486, lng: 123.28553643124997 }),
@@ -158,11 +157,59 @@ export class MapComponent implements OnInit {
     // L.control.layers(this.baseMaps,null,{collapsed:false}).addTo(map);
     
   }
-  aleart(){
-    console.log("aa");
-  }
+
+  openS:boolean=false;
+  esri:boolean=true;
+
+  changeLayer(){
+
+  }  
 
   removeLayer(){
     this.mapReference.removeLayer(this.myFeatureGroup);
   }
+
+
+  searchFlag  :boolean = false;
+  filterFlag  :boolean = false;
+  infoFlag    :boolean = false;
+  settingsFlag:boolean = false;
+
+  addClass(id: any) {
+
+    if (id === "filter"){
+ 
+      this.filterFlag = !this.filterFlag;
+      this.searchFlag = false;
+      this.infoFlag = false;
+      this.settingsFlag = false;
+    }
+ 
+    if (id === "search"){
+ 
+      this.filterFlag = false;
+      this.searchFlag = !this.searchFlag;
+      this.infoFlag = false;
+      this.settingsFlag = false;
+    }
+ 
+    if (id === "info"){
+      this.filterFlag = false;
+      this.searchFlag = false;
+      this.infoFlag = !this.infoFlag;
+      this.settingsFlag = false;
+    }
+ 
+    if (id === "settings"){
+      this.filterFlag = false;
+      this.searchFlag = false;
+      this.infoFlag = false;
+      this.settingsFlag = !this.settingsFlag;
+    }
+
+  }
+  seasons = [
+    'Street Map',
+    'World Imagery'
+  ];
 }
