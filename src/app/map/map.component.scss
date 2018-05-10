@@ -1,41 +1,12 @@
-.controllabel{
-    font-size:1.3em;
+mat-sidenav {
+    width: 350px;
+    background:#eeeeee;
+    min-width: 180px;
 }
 
-.mapbutton{
-    width: 30px;
-    height: 30px;
-    text-align: center;
-
+.fa{
+    position: absolute;
+    right:20px;
+    font-size: 16pt;
+    color:green;
 }
-
-.mapbuttonicon{
-    font-size:28px;
-}
-
-.active{
-    background:rgb(82, 81, 81);
-    color:white;
-}
-
-.hiddenbox{
-    display: none;
-}
-
-div.mat-radio-label-content{
-    vertical-align: top !important;
-}
-
-.example-radio-group {
-    display: inline-flex;
-    flex-direction: column;
-  }
-  
-  .example-radio-button {
-    margin: 5px;
-  }
-  
-  .example-selected-value {
-    margin: 15px 0;
-  }
-  

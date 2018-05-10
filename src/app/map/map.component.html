@@ -1,348 +1,141 @@
-<div 
 
-      style="height: 75vh;"
-      leaflet 
-      [leafletOptions]="options"
-      (leafletMapReady)="onMapReady($event)">
+
+
+
+<mat-sidenav-container class="example-container" >
+      <mat-sidenav #sidenav mode="side" opened="true">
+        
+<!-- SIDENAV CONTENT -->
+
+
+<mat-accordion>
+
+  <mat-expansion-panel [expanded]="true" hideToggle="true">
 
       
-                  <div style="margin-right: 5px; margin-top:40px;" class="leaflet-top leaflet-right" title="Filter">
-
-                        <div id="4" style = "padding:6px;" [ngClass]="{'active': searchFlag }" (click)="addClass('search');" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                              <div class="mapbutton"  mdbWavesEffect>
-                              
-                                    <i class="fa fa-search mapbuttonicon" aria-hidden="true"></i>
-                              
-                              
-                              
-                              </div>
-
-                        </div> 
-                  </div>
-
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Home
+          </mat-panel-title>
+          <mat-panel-description>
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      
+        <p>
+          Welcome to Geospatial Alerts and Advisories!
+        </p>
+          <p>
+            This application is a crowdsourced map of events. Events may be disasters, pest infestations, and other incidents related to climate and environmental issues. Users can choose to register to report these events, share images and videos, provide comments and feedback, and access useful summaries, visualizations, and some spatiotemporal analytics of the reported events. 
           
+          </p>
+          <p>
+            Based on the reports, experts can also issue advisories to inform the public of possible effects of the event through the alerts and advisories module. The public can subscribe in the alerts and advisories module to receive updates and notifications.
 
-                  <div style="margin-right: 5px; margin-top:100px;" class="leaflet-top leaflet-right" title="Filter">
-
-                        <div style = "padding:6px;" [ngClass]="{'active': filterFlag }" (click)="addClass('filter');" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                              <div class="mapbutton"  mdbWavesEffect>
-                              
-                                    <i class="fa fa-filter mapbuttonicon" aria-hidden="true"></i>
-                              
-                              
-                              
-                              </div>
+          </p>
       
-                        </div> 
-                  </div>
+      </mat-expansion-panel>
 
-                  
-                  <div style="margin-right: 5px; margin-top:160px;" class="leaflet-top leaflet-right">
+      <mat-expansion-panel hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Search
+          </mat-panel-title>
+          <mat-panel-description>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </mat-panel-description>
 
-                        <div id="2" style = "padding:6px;" [ngClass]="{'active': infoFlag }" (click)="addClass('info');" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                              <div class="mapbutton"  mdbWavesEffect>
-                              
-                                    <i class="fa fa-info mapbuttonicon" aria-hidden="true"></i>
-                              
-                              
-                              
-                              </div>
+        </mat-expansion-panel-header>
+            
+        <input type="text" placeholder="search">
+
+
+        <div name="search results">
+
+        </div>
+      </mat-expansion-panel>
+
+
+      <mat-expansion-panel hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Summary
+              </mat-panel-title>
+              <mat-panel-description>
+                <i class="fa fa-list" aria-hidden="true"></i>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Event Details
+              </mat-panel-title>
+              <mat-panel-description>
+                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Filter
+              </mat-panel-title>
+              <mat-panel-description>
+                <i class="fa fa-filter" aria-hidden="true"></i>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+          </mat-expansion-panel>
+
+          <mat-expansion-panel hideToggle="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Map Setting
+                </mat-panel-title>
+                <mat-panel-description>
+                  <i class="fa fa-gear" aria-hidden="true"></i>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+  
+            </mat-expansion-panel>
+    </mat-accordion>
+
+
+<!-- END SIDENAV CONTENT -->
+      </mat-sidenav>
+    
+      <mat-sidenav-content>
+            <div 
+
+            style="height: 75vh;"
+            leaflet 
+            [leafletOptions]="options"
+            (leafletMapReady)="onMapReady($event)">
+
+
       
-                        </div> 
-                  </div>
-
-                  <div style="margin-right: 5px; margin-top:220px;" class="leaflet-top leaflet-right">
-
-                        <div id="1" style = "padding:6px;" [ngClass]="{'active': settingsFlag }" (click)="addClass('settings');" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                              <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                              <div class="mapbutton"  mdbWavesEffect>
-                              
-                                    <i class="fa fa-gear mapbuttonicon" aria-hidden="true"></i>
-                              
-                              
-                              
-                              </div>
-      
-                        </div> 
-                  </div>
+      <div mat-raised-button (click)="sidenav.toggle();buttonArrow()"
+      style="position:absolute;top:20px;z-index: 10000;width: 20px;padding:10px 0px;background:white;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+        <img src="../assets/back.png" *ngIf="!isClosed">
+        <img src="../assets/next.png" *ngIf="isClosed">
 
 
 
-                  <!-- hidden divs that fade in on button click -->
-                  
-
-            <div style="margin-right: 80px; margin-top:40px;"
-            
-            class="animated leaflet-top leaflet-right" title="Filter"
-            [ngClass]="{
-                  'fadeIn':searchFlag, 
-                  'hiddenbox': !searchFlag }"
-            >
-
-                  <div id="4" style = "padding:6px;" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                        
-                        
-                              <input type="text" placeholder="Search">
-                        
-                        
-                        
-
-                  </div> 
-            
-            </div>
-
-
-
-
-            <div style="margin-right: 80px; margin-top:100px;"
-            
-            class="animated leaflet-top leaflet-right" title="Filter"
-            [ngClass]="{
-                  'fadeIn':filterFlag, 
-                  'hiddenbox': !filterFlag }"
-            >
-
-                  <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                        <div style="height: 100px;width: 100px;">
-                        
-                              filter options
-                        
-                        
-                        
-                        </div>
-
-                  </div> 
-            
-            </div>
-
-
-
-            <div style="margin-right: 80px; margin-top:160px;"
-            
-            class="animated leaflet-top leaflet-right" title="Filter"
-            [ngClass]="{
-                  'fadeIn':infoFlag, 
-                  'hiddenbox': !infoFlag }"
-            >
-
-                  <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                        <div style="height: 100px;width: 100px;">
-                        
-                              
-                              information
-                        
-                        
-                        </div>
-
-                  </div> 
-            
-            </div>                        
-
-
-            <div style="margin-right: 80px; margin-top:220px;"
-            
-            class="animated leaflet-top leaflet-right" title="Filter"
-            [ngClass]="{
-                  'fadeIn':settingsFlag, 
-                  'hiddenbox': !settingsFlag }"
-            >
-
-                  <div class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-
-                              <mat-radio-group class="example-radio-group">
-                                          <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-                                            {{season}}
-                                          </mat-radio-button>
-                                        </mat-radio-group>
-
-                  </div> 
-            
-            </div>
-
-
-
-            <div  class="leaflet-top leaflet-left" title="Filter">
-
-                  <div id="4" style="width:300px;height:650px;"  class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
-                        <a class="leaflet-control-layers-toggle" href="#" title="Layers"></a>
-                        <div class="mapbutton"  mdbWavesEffect>
-                        
-                              <div style="width: 100%;height: 200px;">
-                                    <h2>Events</h2>
-                                    <table style="width:300px;">
-                                          <tr>
-                                                <td>
-                                                      Category
-                                                </td>
-                                                <td>
-                                                      Number of Incidents
-                                                </td>
-                                          </tr>
-                                          <tr>
-      
-                                          <td>
-                                                Pests
-                                          </td>
-                                          <td>
-                                                23
-                                          </td>
-                                    </tr>
-                                    <tr>
-
-                                          <td>
-                                                Fire
-                                          </td>
-                                          <td>
-                                                1
-                                          </td>
-                                    </tr>
-                                    <tr>
-
-                                          <td>
-                                                Flood
-                                          </td>
-                                          <td>
-                                                12
-                                          </td>
-                                    </tr>
-                                    <tr>
-
-                                          <td>
-                                                Landslide
-                                          </td>
-                                          <td>
-                                                0
-                                          </td>
-                                    </tr>
-                                    </table>
-                              </div>
-                              <div>
-                                          <h2>Regions</h2>
-                                          <table style="width:300px;">
-                                                      <tr>
-                                                            <td>
-                                                                  Region
-                                                            </td>
-                                                            <td>
-                                                                  Number of Incidents
-                                                            </td>
-                                                      </tr>
-                                                      <tr>
-                  
-                                                      <td>
-                                                            I
-                                                      </td>
-                                                      <td>
-                                                            2
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                      <td>
-                                                            II
-                                                      </td>
-                                                      <td>
-                                                            4
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                      <td>
-                                                            III
-                                                      </td>
-                                                      <td>
-                                                            5
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                      <td>
-                                                            IV
-                                                      </td>
-                                                      <td>
-                                                            3
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                      <td>
-                                                            V
-                                                      </td>
-                                                      <td>
-                                                            4
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                      <td>
-                                                            VI
-                                                      </td>
-                                                      <td>
-                                                            13
-                                                      </td>
-                                                </tr>
-                                                <tr>
-            
-                                                <td>
-                                                      VII
-                                                </td>
-                                                <td>
-                                                      13
-                                                </td>
-                                          </tr>
-                                          <tr>
-
-                                                      <td>
-                                                            VIII
-                                                      </td>
-                                                      <td>
-                                                            3
-                                                      </td>
-                                                </tr>
-                                                <tr>
-
-                                                            <td>
-                                                                  IX
-                                                            </td>
-                                                            <td>
-                                                                  3
-                                                            </td>
-                                                      </tr>            
-                                                      <tr>
-
-                                                                  <td>
-                                                                        X
-                                                                  </td>
-                                                                  <td>
-                                                                        3
-                                                                  </td>
-                                                            </tr>  
-                                                </table>
-            
-                              </div>
-                        
-                        
-                        
-                        </div>
-
-                  </div> 
-            </div>
-
-
+</div>
 
       </div>
 
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    
 
-
-
-
-
+    
 
 <!-- animated div displays on clickm -->
 

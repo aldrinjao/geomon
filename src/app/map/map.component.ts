@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
   public mapReference;
 
 
-  public OpenTopoMap =L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+  googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
     maxZoom: 20,
     subdomains:['mt0','mt1','mt2','mt3']
 });
@@ -43,15 +43,16 @@ export class MapComponent implements OnInit {
 
 
   public baseMaps = {
-    "Grayscale": this.OpenTopoMap,
+    "Grayscale": this.googleStreets,
     "Streets": this.Esri_WorldImagery
   };
   options = {
     layers: [
-      this.OpenTopoMap
+      this.googleStreets
     ],
     zoom: 6,
     center: L.latLng({ lat: 12.196486, lng: 123.28553643124997 }),
+    zoomControl: false
   };
 
 
@@ -156,6 +157,11 @@ export class MapComponent implements OnInit {
     });
     // L.control.layers(this.baseMaps,null,{collapsed:false}).addTo(map);
     
+  
+    L.control.zoom({
+      position:'topright'
+    }).addTo(map);
+  
   }
 
   openS:boolean=false;
@@ -208,8 +214,14 @@ export class MapComponent implements OnInit {
     }
 
   }
-  seasons = [
-    'Street Map',
-    'World Imagery'
-  ];
+
+
+  isClosed:boolean= false;
+
+  buttonArrow(){
+    this.isClosed = !this.isClosed;
+
+  }
+
+
 }

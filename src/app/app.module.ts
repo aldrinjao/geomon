@@ -3,7 +3,41 @@ import { NgModule, NO_ERRORS_SCHEMA, Directive } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatRadioModule} from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+} from '@angular/material';
+
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -41,7 +75,7 @@ import { LoginComponent } from './userpage/login/login.component';
 import { MysubscriptionsComponent } from './userpage/mysubscriptions/mysubscriptions.component';
 import { MysubmissionsComponent } from './userpage/mysubmissions/mysubmissions.component';
 import { CatCreateComponent } from './userpage/cat-create/cat-create.component';
-
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 const appRoutes: Routes = [
@@ -80,7 +114,7 @@ const appRoutes: Routes = [
       },
       {
         path: 'subscriptions',
-        component: ReportCreateComponent, 
+        component: MysubscriptionsComponent, 
         // canActivate: [AuthGuardService]
         
       },
@@ -160,6 +194,14 @@ const appRoutes: Routes = [
       }
     ), // ToastrModule added
     MatRadioModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    Ng2SmartTableModule,
   ],
   providers: [
     MapService,
