@@ -1,3 +1,11 @@
+<div 
+
+      style="height: 75vh;"
+      leaflet 
+      [leafletOptions]="options"
+      (leafletMapReady)="onMapReady($event)">
+
+      
                   <div style="margin-top:70px;" class="leaflet-top leaflet-right" title="Filter">
 
                         <div id="4" style = "padding:6px;" [ngClass]="{'active': searchFlag }" (click)="addClass('search');" class="leaflet-control-layers leaflet-control-layers-expanded leaflet-control" aria-haspopup="true" >
@@ -329,3 +337,39 @@
                   </div> 
             </div>
 
+
+
+      </div>
+
+
+
+
+      <div 
+
+      style="height: 75vh;"
+      leaflet 
+      [leafletOptions]="options"
+      (leafletMapReady)="onMapReady($event)"
+      >
+
+
+
+<!-- animated div displays on clickm -->
+
+<!-- 
+
+<div style="width: 100%;margin-top:10px;">
+            <input type="checkbox"/> <i class="fa fa-filter" aria-hidden="true"><span class="controllabel">Filter</span></i> 
+      </div>
+
+      <div style="width: 100%;visibility: hidden;">
+
+            <label for="sel1" class="controllabel">Categories:</label>
+            <select class="form-control" id="sel1">
+                  <option>Landslide</option>
+                  <option>Pests</option>
+                  <option>Fire</option>
+                  <option>Flood</option>
+            </select>
+            
+      </div> -->

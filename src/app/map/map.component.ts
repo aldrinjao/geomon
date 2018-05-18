@@ -1,12 +1,13 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletModule,LeafletDirective } from '@asymmetrik/ngx-leaflet';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
+import {MyCustomDirective} from './map.directive';
+
 
 import 'style-loader!leaflet/dist/leaflet.css';
 import { forEach } from '@angular/router/src/utils/collection';
-
 
 @Component({
   selector: 'app-map',
@@ -15,20 +16,27 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 
 
+
 export class MapComponent implements OnInit {
 
   @Output() notifyParent: EventEmitter<any> = new EventEmitter();
   @Output() open: EventEmitter<any> = new EventEmitter();
 
-
+  @ViewChild(MyCustomDirective) vc:MyCustomDirective;
   constructor(private http: HttpClient) { }
 
   public myFeatureGroup;
+  public myFeatureGroup2;
+
+  public pestLayer;
+  public landslideLayer;
+  public fireLayer;
+
   public marker;
   public test:number;
   public id:number;
   public reports: any;
-  public mapReference;
+  mapReference;
 
 
   googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -36,16 +44,36 @@ export class MapComponent implements OnInit {
     subdomains:['mt0','mt1','mt2','mt3']
 });
 
-  public Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+  Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 
+  Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+});
+
+Stamen_Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	subdomains: 'abcd',
+	minZoom: 0,
+	maxZoom: 18,
+	ext: 'png'
+});
+CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
 
 
-  public baseMaps = {
-    "Grayscale": this.googleStreets,
-    "Streets": this.Esri_WorldImagery
+  baseMaps = {
+    "Google Streets": this.googleStreets,
+    "ESRI World Imagery": this.Esri_WorldImagery,
+    "ESRI WorldTopoMap": this.Esri_WorldTopoMap,
+    "Stamen Terrain": this.Stamen_Terrain,
+    "CartoDB DarkMatter":this.CartoDB_DarkMatter
   };
+
   options = {
     layers: [
       this.googleStreets
@@ -84,10 +112,13 @@ export class MapComponent implements OnInit {
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
-  ngOnInit(){
-    
+  // mymap= L.map('mapid').setView([51.505, -0.09], 13);
 
-    
+
+
+  ngOnInit(){
+    this.mapreference = this.vc.someFunction2();
+    console.log(this.mapreference);
   }
 
   makeMarker(marker:any,map){
@@ -107,41 +138,43 @@ export class MapComponent implements OnInit {
      if (marker.category === "pest"){
        markerIcon = this.pestIcon;
        icontype = "pest" ;
-     }
+       this.marker = L.marker([lat, long],{icon: markerIcon}).addTo(this.pestLayer);
+      }
      
      else if(marker.category === "landslide"){
  
        markerIcon = this.landslideIcon;
        icontype = "landslide";
-     }
+       this.marker = L.marker([lat, long],{icon: markerIcon}).addTo(this.landslideLayer);
+
+      }
      else if (marker.category==="fire"){
  
        markerIcon = this.fireIcon;
        icontype = "fire";
-     }
+       this.marker = L.marker([lat, long],{icon: markerIcon}).addTo(this.fireLayer);
+
+      }
      
-     this.marker = L.marker([lat, long],{icon: markerIcon}).addTo(map).addTo(this.myFeatureGroup);
+    //  this.marker = L.marker([lat, long],{icon: markerIcon}).addTo(map).addTo(this.myFeatureGroup);
+     
      this.marker.test = this.id;
      this.marker.icontype = icontype;
 
   }
 
 
-  //call generate markers after retrieving from database
 
 
-  groupClick = (event) => {
+  // groupClick = (event) => {
 
-    this.notifyParent.emit(event.layer);
-  }
+  //   this.notifyParent.emit(event.layer);
+  // }
 
   onMapReady(map) {
 
-    this.mapReference=map;
-    this.myFeatureGroup= L.featureGroup().addTo(map).on("click", this.groupClick);
-  
-
-
+    // this.myFeatureGroup= L.featureGroup().addTo(map).on("click", this.groupClick);
+    
     this.http.get('/api').subscribe(data => {
       this.reports = data;
       //pass the data
@@ -155,26 +188,32 @@ export class MapComponent implements OnInit {
       }
       
     });
-    // L.control.layers(this.baseMaps,null,{collapsed:false}).addTo(map);
-    
-  
+
+
+    this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick);
+    this.pestLayer = L.featureGroup().addTo(map);
+    this.landslideLayer = L.featureGroup().addTo(map);
+
+
+    L.control.layers(this.baseMaps).addTo(map);
     L.control.zoom({
       position:'topright'
     }).addTo(map);
   
   }
+  mapreference: L.map;
 
-  openS:boolean=false;
-  esri:boolean=true;
 
-  changeLayer(){
-
-  }  
-
-  removeLayer(){
-    this.mapReference.removeLayer(this.myFeatureGroup);
+  groupClick(e){
+    console.log(this.vc.someFunction2);
+    
   }
 
+
+  
+  ngAfterViewInit(){   
+    this.vc.someFunction();                 ///<<@@@ no need to use nativeElement
+  }
 
   searchFlag  :boolean = false;
   filterFlag  :boolean = false;
@@ -221,7 +260,7 @@ export class MapComponent implements OnInit {
   buttonArrow(){
     this.isClosed = !this.isClosed;
 
-  }
+  }         
 
 
 }

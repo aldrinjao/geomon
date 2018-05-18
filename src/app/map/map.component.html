@@ -10,7 +10,7 @@
 
 <mat-accordion>
 
-  <mat-expansion-panel [expanded]="true" hideToggle="true">
+  <mat-expansion-panel [expanded]="true" hideToggle="true" style="margin-top:10px;">
 
       
         <mat-expansion-panel-header>
@@ -90,20 +90,19 @@
                 <i class="fa fa-filter" aria-hidden="true"></i>
               </mat-panel-description>
             </mat-expansion-panel-header>
-
+            
+            
+            
+            <mat-slide-toggle
+              class="example-margin"
+            >
+              Filter
+            </mat-slide-toggle>
+          
+          
           </mat-expansion-panel>
 
-          <mat-expansion-panel hideToggle="true">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Map Setting
-                </mat-panel-title>
-                <mat-panel-description>
-                  <i class="fa fa-gear" aria-hidden="true"></i>
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-  
-            </mat-expansion-panel>
+
     </mat-accordion>
 
 
@@ -111,31 +110,35 @@
       </mat-sidenav>
     
       <mat-sidenav-content>
-            <div 
 
-            style="height: 75vh;"
-            leaflet 
-            [leafletOptions]="options"
-            (leafletMapReady)="onMapReady($event)">
+          
+          <div 
+
+          style="height: 75vh;"
+          leaflet 
+          [leafletOptions]="options"
+          (leafletMapReady)="onMapReady($event)"
+
+          myCustomDirective
+          
+          >
+
+
 
 
       
-      <div mat-raised-button (click)="sidenav.toggle();buttonArrow()"
-      style="position:absolute;top:20px;z-index: 10000;width: 20px;padding:10px 0px;background:white;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
-        <img src="../assets/back.png" *ngIf="!isClosed">
-        <img src="../assets/next.png" *ngIf="isClosed">
+            <div mat-raised-button (click)="sidenav.toggle();buttonArrow()"
+              style="position:absolute;top:300px;z-index: 10000;width: 20px;padding:10px 0px;background:white;box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);">
+              <img src="../assets/back.png" *ngIf="!isClosed">
+              <img src="../assets/next.png" *ngIf="isClosed">
+            </div>
 
-
-
-</div>
-
-      </div>
+          </div>
 
       </mat-sidenav-content>
     </mat-sidenav-container>
-    
 
-    
+
 
 <!-- animated div displays on clickm -->
 

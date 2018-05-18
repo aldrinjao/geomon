@@ -52,12 +52,13 @@ import { ReportCreateComponent } from './report-create/report-create.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
+
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
+import {MyCustomDirective} from './map/map.directive';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
@@ -172,6 +173,8 @@ const appRoutes: Routes = [
     MysubscriptionsComponent,
     MysubmissionsComponent,
     CatCreateComponent,
+    MyCustomDirective
+
     
   ],
   imports: [
@@ -202,6 +205,8 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatIconModule,
     Ng2SmartTableModule,
+    MatSlideToggleModule,
+    
   ],
   providers: [
     MapService,

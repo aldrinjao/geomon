@@ -2,6 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-light navbar-expand-lg fixed-top white">
             
   <!-- Navbar brand -->
+  <logo><a class="navbar-brand" href="http://www.sarai.ph"><img src="../../assets/header_green.png" width="160px;"></a></logo>
   <logo><a class="navbar-brand" href="#"><img src="../../assets/header_green.png" width="160px;"></a></logo>
 
   <!-- Collapsible content -->
@@ -10,16 +11,19 @@
       <!-- Links -->
       <ul class="navbar-nav ml-auto">
 
-
+        <li class="nav-item">
+            <a class="nav-link waves-light" mdbRippleRadius routerLink="/">Home<span class="sr-only"></span></a>
+      
+        </li>
             <li class="nav-item dropdown" dropdown>
                     <a dropdownToggle mdbRippleRadius type="button" class="nav-link dropdown-toggle waves-light" mdbRippleRadius>
-                    Regions<span class="caret"></span></a>
+                    Province<span class="caret"></span></a>
                     <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
                         <a class="dropdown-item waves-light" mdbRippleRadius href="#">Landlslides</a>
                         <a class="dropdown-item waves-light" mdbRippleRadius href="#">Pests</a>
                         <a class="dropdown-item waves-light" mdbRippleRadius href="#">Something else here</a>
-                        <div class="divider dropdown-divider"></div>
-                        <a class="dropdown-item waves-light" mdbRippleRadius href="#">Separated link</a>
+                        <a class="dropdown-item waves-light" mdbRippleRadius href="#" dropdownToggle>Separated link<span class="caret"></span></a>
+                    
                     </div>
                 </li>    
 
