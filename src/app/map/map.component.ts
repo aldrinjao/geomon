@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { LeafletModule,LeafletDirective } from '@asymmetrik/ngx-leaflet';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import {MyCustomDirective} from './map.directive';
@@ -19,9 +19,6 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 export class MapComponent implements OnInit {
 
-  @Output() notifyParent: EventEmitter<any> = new EventEmitter();
-  @Output() open: EventEmitter<any> = new EventEmitter();
-
   @ViewChild(MyCustomDirective) vc:MyCustomDirective;
   constructor(private http: HttpClient) { }
 
@@ -36,7 +33,7 @@ export class MapComponent implements OnInit {
   public test:number;
   public id:number;
   public reports: any;
-  mapReference;
+  mapreference;
 
 
   googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
@@ -117,8 +114,7 @@ CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly
 
 
   ngOnInit(){
-    this.mapreference = this.vc.someFunction2();
-    console.log(this.mapreference);
+
   }
 
   makeMarker(marker:any,map){
@@ -190,7 +186,9 @@ CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly
     });
 
 
-    this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick);
+    // this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick);
+    
+    this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick.bind(this));
     this.pestLayer = L.featureGroup().addTo(map);
     this.landslideLayer = L.featureGroup().addTo(map);
 
@@ -201,12 +199,18 @@ CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly
     }).addTo(map);
   
   }
-  mapreference: L.map;
+
+
+  onClickMe() {
+    this.vc.someFunction();
+  
+  }
+
 
 
   groupClick(e){
-    console.log(this.vc.someFunction2);
-    
+    this.vc.someFunction();
+
   }
 
 

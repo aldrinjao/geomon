@@ -6,19 +6,26 @@ import { LeafletModule,LeafletDirective } from '@asymmetrik/ngx-leaflet';
  })
  export class MyCustomDirective {
     leafletDirective: LeafletDirective;
-     
+
     constructor(leafletDirective: LeafletDirective) {
        this.leafletDirective = leafletDirective;
     }
  
     someFunction() {
         console.log("333");
-       if (null != this.leafletDirective.getMap()) {
-          // Do stuff with the map
+        console.log(this.leafletDirective.getMap()); 
+        if (null == this.leafletDirective.getMap()) {
+            console.log("null");
        }
+       console.log("444")
     }
+
+
     someFunction2() {
-        console.log("3222233");
+        console.log("bbbb");
        return this.leafletDirective.getMap();
     }
+
+    ngAfterViewInit(){                  ///<<@@@ no need to use nativeElement
+      }
  }
