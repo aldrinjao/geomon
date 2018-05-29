@@ -12,19 +12,14 @@ import { LeafletModule,LeafletDirective } from '@asymmetrik/ngx-leaflet';
     }
  
     someFunction() {
-        console.log("333");
-        console.log(this.leafletDirective.getMap()); 
-        if (null == this.leafletDirective.getMap()) {
-            console.log("null");
+        var map;
+
+        if (null != this.leafletDirective.getMap()) {
+            return this.leafletDirective.getMap();
+
        }
-       console.log("444")
     }
 
-
-    someFunction2() {
-        console.log("bbbb");
-       return this.leafletDirective.getMap();
-    }
 
     ngAfterViewInit(){                  ///<<@@@ no need to use nativeElement
       }

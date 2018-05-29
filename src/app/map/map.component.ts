@@ -189,27 +189,71 @@ CartoDB_DarkMatter = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly
     // this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick);
     
     this.fireLayer = L.featureGroup().addTo(map).on("click", this.groupClick.bind(this));
-    this.pestLayer = L.featureGroup().addTo(map);
-    this.landslideLayer = L.featureGroup().addTo(map);
-
-
+    this.pestLayer = L.featureGroup().addTo(map).on("click", this.groupClick.bind(this));
+    this.landslideLayer = L.featureGroup().addTo(map).on("click", this.groupClick.bind(this));
+    
     L.control.layers(this.baseMaps).addTo(map);
     L.control.zoom({
       position:'topright'
     }).addTo(map);
   
   }
+  fireFlag = true;
+  floodFlag = true;
+  landslideFlag = true;
+  pestFlag = true;
+
+  toggleSlide(id:any){
+    this.mapreference = this.vc.someFunction();
 
 
-  onClickMe() {
-    this.vc.someFunction();
-  
+    if (id==1){
+      this.landslideFlag = !this.landslideFlag;
+      if (this.landslideFlag){
+        this.landslideLayer.addTo(this.mapreference);
+       
+        
+      } else{
+        this.mapreference.removeLayer(this.landslideLayer);
+          
+      }   
+      
+    }
+    if (id==2){
+      this.fireFlag = !this.fireFlag;
+      if (this.fireFlag){
+        this.fireLayer.addTo(this.mapreference);
+       
+        
+      } else{
+        this.mapreference.removeLayer(this.fireLayer);
+          
+      }   
+      
+    }    
+    if (id==3){
+      this.pestFlag = !this.pestFlag;
+      if (this.pestFlag){
+        this.pestLayer.addTo(this.mapreference);
+       
+        
+      } else{
+        this.mapreference.removeLayer(this.pestLayer);
+          
+      }   
+      
+    }
+
+
   }
 
 
+  public event_content:any;
 
   groupClick(e){
-    this.vc.someFunction();
+
+    console.log(e);
+    this.event_content = e.layer.icontype; 
 
   }
 

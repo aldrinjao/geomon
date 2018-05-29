@@ -79,6 +79,9 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
 
+            {{event_content}}
+
+
           </mat-expansion-panel>
 
           <mat-expansion-panel hideToggle="true">
@@ -90,15 +93,32 @@
                 <i class="fa fa-filter" aria-hidden="true"></i>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            
-            
-            
+            Layers
+            <br>
+            <!-- make sliders based on categories -->
             <mat-slide-toggle
               class="example-margin"
-            >
-              Filter
+              [checked]= "landslideFlag"
+              (change) = "toggleSlide(1)"
+              >
+              Landslide
             </mat-slide-toggle>
-          
+            <br>
+            <mat-slide-toggle
+              class="example-margin"
+              [checked]= "fireFlag"
+              (change) = "toggleSlide(2)"
+              >
+              Fire
+            </mat-slide-toggle>            
+            <br>
+            <mat-slide-toggle
+              class="example-margin"
+              [checked]= "pestFlag"
+              (change) = "toggleSlide(3)"
+              >
+              Pest
+            </mat-slide-toggle>          
           
           </mat-expansion-panel>
 
@@ -133,8 +153,6 @@
 
       </mat-sidenav-content>
     </mat-sidenav-container>
-
-    <button (click)="onClickMe()">Click mea!</button>
 
 <!-- animated div displays on clickm -->
 
